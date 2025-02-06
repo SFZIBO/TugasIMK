@@ -1,300 +1,468 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - iClean</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 700;
-        }
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: rgba(44, 62, 80, 0.8); /* Transparent dark blue */
-            color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: background-color 0.3s ease;
-        }
-        .header a {
-            text-decoration: none;
-            color: white;
-            background-color: #e74c3c;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
+        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
 
-        /* Main Content */
-        .checkout-container {
-            max-width: 800px;
-            margin: 100px auto 50px; /* Adjusted margin-top to account for fixed header */
-            padding: 30px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .checkout-container h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #2c3e50;
-        }
+        <!--=============== REMIXICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        
+        <!--=============== SWIPER CSS ===============-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
 
-        /* Service Selection */
-        .service-selection {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .service-card {
-            flex: 1 1 calc(33.33% - 20px);
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        .service-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .service-card h3 {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #2c3e50;
-        }
-        .service-card p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .service-card span {
-            font-size: 16px;
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        .service-card input[type="checkbox"] {
-            margin-top: 10px;
-        }
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
 
-        /* Checkout Items */
-        .checkout-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-        .checkout-item:last-child {
-            border-bottom: none;
-        }
-        .total {
-            font-weight: bold;
-            font-size: 20px;
-            margin-top: 20px;
-            color: #2c3e50;
-        }
-        .button-checkout {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #27ae60;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-        .button-checkout:hover {
-            background-color: #219653;
-        }
+        <title>Responsive Website Travel</title>
+    </head>
+    <body>
+        <header class="header" id="header">
+            <nav class="nav container">
+                <img src="assets/img/Iclean.png" alt="IClean" style="height: 40px;" href="#">
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #2c3e50;
-            color: white;
-            margin-top: 50px;
-        }
-        footer a {
-            color: #e74c3c;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <div class="header">
-        <h1>iClean</h1>
-        <a href="#" class="checkout-button">Checkout</a>
-    </div>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">Beranda</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">Tentang Kami</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#discover" class="nav__link">Promo</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#place" class="nav__link">Layanan</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#hubungi" class="nav__link">Hubungi Kami</a>
+                        </li>
+                    </ul>
 
-    <!-- Checkout Container -->
-    <div class="checkout-container">
-        <h2>Pilih Layanan Anda</h2>
+                    <div class="nav__dark">
+                        <!-- Theme change button -->
+                        <span class="change-theme-name">Dark mode</span>
+                        <i class="ri-moon-line change-theme" id="theme-button"></i>
+                    </div>
 
-        <!-- Service Selection -->
-        <div class="service-selection">
-            <!-- Service 1 -->
-            <div class="service-card">
-                <!-- HINT: Ganti URL gambar placeholder dengan gambar asli -->
-                <img src="C:\Users\Erga\Documents\Website IClean\Website IClean\assets\img\ck1.jpeg" alt="Pembersihan Hama">
-                <h3>Pembersihan Hama</h3>
-                <p>Rumah</p>
-                <span>Rp. 50.000/Jam</span>
-                <input type="checkbox" id="service1" value="50000">
-                <label for="service1"></label>
+                    <i class="ri-close-line nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <!--==================== HOME ====================-->
+            <section class="home" id="home">
+                <img src="assets/img/Home2.jpeg" alt="" class="home__img">
+
+                <div class="home__container container grid">
+                    <div class="home__data">
+                        <span class="home__data-subtitle">Discover your place</span>
+                        <h1 class="home__data-title">kunjungi Tentang <br><b>Pelayanan Kami </h1>
+                        <a href="#" class="button">Pelajari Lebih lanjut</a>
+
+                    </div>
+
+                    <div class="home__social">
+                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                            <i class="ri-facebook-box-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </div>
+
+                    <div class="home__info">
+                        <div>
+                            <span class="home__info-title">5 keuntungan Menggunakan Jasa Kami</span>
+                            <a href="" class="button button--flex button--link home__info-button">
+                                More <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                        <div class="home__info-overlay">
+                            <img src="assets/img/Home2.jpeg" alt="" class="home__info-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== ABOUT ====================-->
+            <section class="about section" id="about">
+                <div class="about__container container grid">
+                    <div class="about__data">
+                        <h2 class="section__title about__title">Informasi Penting <br> Tentang Pelayanan Kami</h2>
+                        <p class="about__description"> iClean didirikan oleh sekelompok mahasiswa 
+                            yang melihat kebutuhan akan jasa kebersihan yang praktis dan berkualitas. 
+                            Dengan semangat kewirausahaan, Kami membangun iClean 
+                            untuk memberikan layanan terbaik.
+                            
+                            
+                        </p>
+                        <a href="#" class="button">Pelajari Lebih Lanjut</a>
+                    </div>
+
+                    <div class="about__img">
+                        <div class="about__img-overlay">
+                            <img src="assets/img/CS1.jpeg" alt="" class="about__img-one">
+                        </div>
+
+                        <div class="about__img-overlay">
+                            <img src="assets/img/CS2.jpeg" alt="" class="about__img-two">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!--==================== DISCOVER ====================-->
+            <section class="discover section" id="discover">
+                <h2 class="section__title">Diskon menarik untuk <br> Member baru</h2>
+                
+                <div class="discover__container container swiper-container">
+                    <div class="swiper-wrapper">
+                        <!--==================== DISCOVER 1 ====================-->
+                        <div class="discover__card swiper-slide">
+                            <img src="assets/img/CS6.jpeg" alt="" class="discover__img">
+                            <div class="discover__data">
+                                <h2 class="discover__title">Diskon Perdana</h2>
+                                <span class="discover__description">Dapatkan Diskon hingga 50%!</span>
+                            </div>
+                        </div>
+
+                        <!--==================== DISCOVER 2 ====================-->
+                        <div class="discover__card swiper-slide">
+                            <img src="assets/img/CS7.jpeg" alt="" class="discover__img">
+                            <div class="discover__data">
+                                <h2 class="discover__title">Diskon Kinclong</h2>
+                                <span class="discover__description">Dapatkan Diskon hingga 50%!</span>
+                            </div>
+                        </div>
+
+                        <!--==================== DISCOVER 3 ====================-->
+                        <div class="discover__card swiper-slide">
+                            <img src="assets/img/CS8.jpeg" alt="" class="discover__img">
+                            <div class="discover__data">
+                                <h2 class="discover__title">Diskon Bersih Berkilau</h2>
+                                <span class="discover__description">Dapatkan Diskon hingga 50%!</span>
+                            </div>
+                        </div>
+
+                        <!--==================== DISCOVER 4 ====================-->
+                        <div class="discover__card swiper-slide">
+                            <img src="assets/img/CS9.jpeg" alt="" class="discover__img">
+                            <div class="discover__data">
+                                <h2 class="discover__title">Diskon Ruang Luas</h2>
+                                <span class="discover__description">Dapatkan Diskon hingga 50%!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== EXPERIENCE ====================-->
+            <section class="experience section">
+                <h2 class="section__title">Dengan Pengalaman <br> Kami akan melayani Anda</h2>
+
+                <div class="experience__container container grid">
+                    <div class="experience__content grid">
+                        <div class="experience__data">
+                            <h2 class="experience__number">20</h2>
+                            <span class="experience__description">Tahun <br> Pengalaman</span>
+                        </div>
+
+                        <div class="experience__data">
+                            <h2 class="experience__number">75</h2>
+                            <span class="experience__description">Rumah <br> Kinclong</span>
+                        </div>
+
+                        <div class="experience__data">
+                            <h2 class="experience__number">650+</h2>
+                            <span class="experience__description">Pelanggan <br> Berlangganan</span>
+                        </div>
+                    </div>
+
+                    <div class="experience__img grid">
+                        <div class="experience__overlay">
+                            <img src="assets/img/home1.jpg" alt="" class="experience__img-one">
+                        </div>
+                        
+                        <div class="experience__overlay">
+                            <img src="assets/img/CS3.jpeg" alt="" class="experience__img-two">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== PLACES ====================-->
+            <section class="place section" id="place">
+                <h2 class="section__title">Pilih Layanan yang Anda ingin pesan</h2>
+
+                <div class="place__container container grid">
+                    <!--==================== PLACES CARD 1 ====================-->
+                    <div class="place__card">
+                        <img src="assets/img/ly.jpeg" alt="" class="place__img">
+                        
+                        <div class="place__content">
+                            <span class="place__rating">
+                                <i class="ri-star-line place__rating-icon"></i>
+                                <span class="place__rating-number">4,8</span>
+                            </span>
+
+                            <div class="place__data">
+                                <h3 class="place__title">Pembersihan Hama</h3>
+                                <span class="place__subtitle">Rumah</span>
+                                <span class="place__price">Rp.50.000/Jam</span>
+                            </div>
+                        </div>
+
+                        <a href="Checkout.html">
+                            <button class="button button--flex place__button">
+                                <i class="ri-arrow-right-line"></i>
+                            </button>
+                            </a>
+                    </div>
+
+                    <!--==================== PLACES CARD 2 ====================-->
+                    <div class="place__card">
+                        <img src="assets/img/ly2.jpeg" alt="" class="place__img">
+                        
+                        <div class="place__content">
+                            <span class="place__rating">
+                                <i class="ri-star-line place__rating-icon"></i>
+                                <span class="place__rating-number">5,0</span>
+                            </span>
+
+                            <div class="place__data">
+                                <h3 class="place__title">Pembersihan Atap</h3>
+                                <span class="place__subtitle">Rumah</span>
+                                <span class="place__price">Rp.50.000/Jam</span>
+                            </div>
+                        </div>
+
+                        <a href="Checkout.html">
+                            <button class="button button--flex place__button">
+                                <i class="ri-arrow-right-line"></i>
+                            </button>
+                            </a>
+                    </div>
+
+                    <!--==================== PLACES CARD 3 ====================-->
+                    <div class="place__card">
+                        <img src="assets/img/ly3.jpeg" alt="" class="place__img">
+                        
+                        <div class="place__content">
+                            <span class="place__rating">
+                                <i class="ri-star-line place__rating-icon"></i>
+                                <span class="place__rating-number">4,9</span>
+                            </span>
+
+                            <div class="place__data">
+                                <h3 class="place__title">Komersial</h3>
+                                <span class="place__subtitle">Komersial</span>
+                                <span class="place__price">Rp.50.000/Jam</span>
+                            </div>
+                        </div> 
+
+                        <a href="Checkout.html">
+                            <button class="button button--flex place__button">
+                                <i class="ri-arrow-right-line"></i>
+                            </button>
+                            </a>
+                    </div>
+
+                    <!--==================== PLACES CARD 4 ====================-->
+                    <div class="place__card">
+                        <img src="assets/img/ly4.jpeg" alt="" class="place__img">
+                        
+                        <div class="place__content">
+                            <span class="place__rating">
+                                <i class="ri-star-line place__rating-icon"></i>
+                                <span class="place__rating-number">4,8</span>
+                            </span>
+
+                            <div class="place__data">
+                                <h3 class="place__title">Rumah Tangga</h3>
+                                <span class="place__subtitle">Pembersihan Rumah Tangga</span>
+                                <span class="place__price">Rp.50.000/Jam</span>
+                            </div>
+                        </div>
+
+                        <a href="Checkout.html">
+                            <button class="button button--flex place__button">
+                                <i class="ri-arrow-right-line"></i>
+                            </button>
+                            </a>
+                    </div>
+
+                    <!--==================== PLACES CARD 5 ====================-->
+                    <div class="place__card">
+                        <img src="assets/img/ly5.jpeg" alt="" class="place__img">
+                        
+                        <div class="place__content">
+                            <span class="place__rating">
+                                <i class="ri-star-line place__rating-icon"></i>
+                                <span class="place__rating-number">4,8</span>
+                            </span>
+
+                            <div class="place__data">
+                                <h3 class="place__title">Khusus</h3>
+                                <span class="place__subtitle">Rumah/Kantor</span>
+                                <span class="place__price">Rp.50.000/Jam</span>
+                            </div>
+                        </div>
+                        <a href="Checkout.html">
+                        <button class="button button--flex place__button">
+                            <i class="ri-arrow-right-line"></i>
+                        </button>
+                        </a>
+                    </div>
+                    <!--==================== PLACES CARD 6 ====================-->
+                    <div class="place__card">
+                        <img src="assets/img/ly6.jpg" alt="" class="place__img">
+                        
+                        <div class="place__content">
+                            <span class="place__rating">
+                                <i class="ri-star-line place__rating-icon"></i>
+                                <span class="place__rating-number">4,8</span>
+                            </span>
+
+                            <div class="place__data">
+                                <h3 class="place__title">Lingkungan Luar</h3>
+                                <span class="place__subtitle">Lingkungan Luar</span>
+                                <span class="place__price">Rp.100.000/Jam</span>
+                            </div>
+                        </div>
+
+                        <a href="Checkout.html">
+                            <button class="button button--flex place__button">
+                                <i class="ri-arrow-right-line"></i>
+                            </button>
+                            </a>
+                    </div>
+                </div>
+            </section>
+            <!--==================== TENTANG KAMI ====================-->
+            <section class="hubungi kami" id="hubungi">
+                <div class="subscribe__bg">
+                    <div class="subscribe__container container">
+                        <h2 class="section__title subscribe__title">Hubungi <br> Kami</h2>
+                        <p class="subscribe__description">Berlangganan ke layanan kami dan dapatkan diskon 
+                            yang menarik.
+                        </p>
+    
+                        <form action="" class="subscribe__form">
+                            <input type="text" placeholder="Enter email" class="subscribe__input">
+    
+                            <button class="button" href="Checkout.html">
+                                Hubungi
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+                    </main>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <h3 class="footer__title">Jasa</h3>
+                        <p class="footer__description">Membersihkan Rumah Anda <br> Sampai debu terakhir.
+                        </p>
+                        <div>
+                            <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" class="footer__social">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                                <i class="ri-youtube-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Tentang</h3>
+                        <ul>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Tentang Kami</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Fitur</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Perusahaan</h3>
+                        <ul>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Team</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Biaya Layanan</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Menjadi Member</a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Dukungan</h3>
+                        <ul>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">FAQs</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Dukungan Pusat</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Kontak Kamu</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer__rights">
+                    <p class="footer__copy">&#169; 2025 IClean. All rigths reserved.</p>
+                    <div class="footer__terms">
+                        <a href="#" class="footer__terms-link">Terms & Agreements</a>
+                        <a href="#" class="footer__terms-link">Privacy Policy</a>
+                    </div>
+                </div>
             </div>
+        </footer>
 
-            <!-- Service 2 -->
-            <div class="service-card">
-                <!-- HINT: Ganti URL gambar placeholder dengan gambar asli -->
-                <img src="C:\Users\Erga\Documents\Website IClean\Website IClean\assets\img\ck2.jpeg" alt="Pembersihan Atap">
-                <h3>Pembersihan Atap</h3>
-                <p>Rumah</p>
-                <span>Rp. 50.000/Jam</span>
-                <input type="checkbox" id="service2" value="50000">
-                <label for="service2"></label>
-            </div>
+         <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
 
-            <!-- Service 3 -->
-            <div class="service-card">
-                <!-- HINT: Ganti URL gambar placeholder dengan gambar asli -->
-                <img src="C:\Users\Erga\Documents\Website IClean\Website IClean\assets\img\ck3.jpg" alt="Pembersihan Komersial">
-                <h3>Pembersihan Komersial</h3>
-                <p>Komersial</p>
-                <span>Rp. 50.000/Jam</span>
-                <input type="checkbox" id="service3" value="50000">
-                <label for="service3"></label>
-            </div>
+        <!--=============== SCROLL REVEAL===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+        
+        <!--=============== SWIPER JS ===============-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
 
-            <!-- Service 4 -->
-            <div class="service-card">
-                <!-- HINT: Ganti URL gambar placeholder dengan gambar asli -->
-                <img src="C:\Users\Erga\Documents\Website IClean\Website IClean\assets\img\ck4.jpg" alt="Pembersihan Rumah Tangga">
-                <h3>Pembersihan Rumah Tangga</h3>
-                <p>Rumah</p>
-                <span>Rp. 50.000/Jam</span>
-                <input type="checkbox" id="service4" value="50000">
-                <label for="service4"></label>
-            </div>
-
-            <!-- Service 5 -->
-            <div class="service-card">
-                <!-- HINT: Ganti URL gambar placeholder dengan gambar asli -->
-                <img src="C:\Users\Erga\Documents\Website IClean\Website IClean\assets\img\ck5.jpeg" alt="Pembersihan Khusus">
-                <h3>Pembersihan Khusus</h3>
-                <p>Rumah/Kantor</p>
-                <span>Rp. 50.000/Jam</span>
-                <input type="checkbox" id="service5" value="50000">
-                <label for="service5"></label>
-            </div>
-
-            <!-- Service 6 -->
-            <div class="service-card">
-                <!-- HINT: Ganti URL gambar placeholder dengan gambar asli -->
-                <img src="C:\Users\Erga\Documents\Website IClean\Website IClean\assets\img\ck6.jpeg" alt="Pembersihan Lingkungan Luar">
-                <h3>Pembersihan Lingkungan Luar</h3>
-                <p>Lingkungan Luar</p>
-                <span>Rp. 100.000/Jam</span>
-                <input type="checkbox" id="service6" value="100000">
-                <label for="service6"></label>
-            </div>
-        </div>
-
-        <h2>Keranjang Anda</h2>
-        <div id="cart-items"></div>
-
-        <!-- Total -->
-        <div class="total" id="total-price">
-            Total: Rp. 0
-        </div>
-
-        <!-- Checkout Button -->
-        <a href="#" class="button-checkout" onclick="handleCheckout()">Checkout</a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        © 2025 IClean. All rights reserved.
-        <br>
-        <a href="#">Terms & Agreements</a> | <a href="#">Privacy Policy</a>
-    </footer>
-
-    <script>
-        // JavaScript to calculate total price based on selected services
-        let totalPrice = 0;
-
-        const serviceCheckboxes = document.querySelectorAll('.service-card input[type="checkbox"]');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const totalPriceElement = document.getElementById('total-price');
-
-        function updateCart() {
-            totalPrice = 0;
-            cartItemsContainer.innerHTML = '';
-
-            serviceCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    const serviceName = checkbox.parentElement.querySelector('h3').innerText;
-                    const servicePrice = parseInt(checkbox.value);
-                    totalPrice += servicePrice;
-
-                    const itemElement = document.createElement('div');
-                    itemElement.classList.add('checkout-item');
-                    itemElement.innerHTML = `
-                        <span>${serviceName}</span>
-                        <span>Rp. ${servicePrice}/Jam</span>
-                    `;
-                    cartItemsContainer.appendChild(itemElement);
-                }
-            });
-
-            totalPriceElement.innerText = `Total: Rp. ${totalPrice}`;
-        }
-
-        serviceCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateCart);
-        });
-
-        function handleCheckout() {
-            if (totalPrice > 0) {
-                window.location.href = 'payment-confirmation.html';
-            } else {
-                alert('Silakan pilih layanan terlebih dahulu.');
-            }
-        }
-    </script>
-</body>
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>
